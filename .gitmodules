@@ -1,0 +1,15 @@
+[submodule "Expense-tracker"]
+	path = Expense-tracker
+	url = https://github.com/ankushyamkar10/Expense-tracker
+[submodule "Expense-Deps"]
+	path = Expense-Deps
+	url = https://github.com/ankushyamkar10/Expense-Deps
+[submodule "DS-Service"]
+	path = DS-Service
+	url = https://github.com/ankushyamkar10/DS-Service
+[submodule "User-Service"]
+	path = User-Service
+	url = https://github.com/ankushyamkar10/User-Service
+[submodule "Auth-Service"]
+	path = Auth-Service
+	url = https://github.com/ankushyamkar10/Auth-Service
