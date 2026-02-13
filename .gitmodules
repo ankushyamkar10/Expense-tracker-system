@@ -11,3 +11,6 @@
 [submodule "Expense-Service"]
 	path = Expense-Service
 	url = https://github.com/ankushyamkar10/Expense-Service
+[submodule "DS-Service"]
+	path = DS-Service
+	url = https://github.com/ankushyamkar10/DS-Service
