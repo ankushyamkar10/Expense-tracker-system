@@ -13,3 +13,6 @@
 [submodule "Auth-Service"]
 	path = Auth-Service
 	url = https://github.com/ankushyamkar10/Auth-Service
+[submodule "Expense-Service"]
+	path = Expense-Service
+	url = https://github.com/ankushyamkar10/Expense-Service
