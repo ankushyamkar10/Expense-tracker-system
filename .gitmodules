@@ -2,9 +2,6 @@
 	path = Expense-tracker
 	url = https://github.com/ankushyamkar10/Expense-tracker
 	branch = main
-[submodule "DS-Service"]
-	path = DS-Service
-	url = https://github.com/ankushyamkar10/DS-Service
 [submodule "User-Service"]
 	path = User-Service
 	url = https://github.com/ankushyamkar10/User-Service
