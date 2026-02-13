@@ -1,4 +1,4 @@
-# 📊 Expense Tracker System
+# Expense Tracker System
 
 A **microservices-based expense tracking system** built with an **event-driven architecture**, designed for **mobile-first, minimalistic expense management**.
 
@@ -6,19 +6,19 @@ The system separates concerns across independent services and integrates them us
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
-- 🔐 **Authentication Service** – Handles login and registration
-- 👤 **User Service** – Manages user profiles
-- 🧠 **DS Service (LLM-powered)** – Extracts structured expense data (amount, merchant, currency)
-- 💰 **Expense Service** – Stores and manages expense records
-- 📱 **React Native Mobile App** – Minimal interface for tracking expenses
+- **Authentication Service** – Handles login and registration
+- **User Service** – Manages user profiles
+- **DS Service (LLM-powered)** – Extracts structured expense data (amount, merchant, currency)
+- **Expense Service** – Stores and manages expense records
+- **React Native Mobile App** – Minimal interface for tracking expenses
 
 All services communicate asynchronously using **Kafka**.
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```bash
 Expense-tracker-system/
@@ -32,9 +32,9 @@ Expense-tracker-system/
 
 ---
 
-## ⚙️ Backend Setup
+## Backend Setup
 
-### 1️⃣ Prerequisites
+### Prerequisites
 
 Make sure the following services are running before starting the backend:
 
@@ -43,11 +43,11 @@ Make sure the following services are running before starting the backend:
 
 ---
 
-### 2️⃣ Start Backend Services
+### Start Backend Services
 
 Start each service independently:
 
-#### 🔐 Auth-Service
+#### Auth-Service
 
 Handles:
 
@@ -55,14 +55,14 @@ Handles:
 - User login
 - Token management
 
-#### 👤 User-Service
+#### User-Service
 
 Handles:
 
 - User profile management
 - Account-related operations
 
-#### 🧠 DS-Service
+#### DS-Service
 
 - Uses LLM to extract structured data from raw expense input
 - Publishes structured expense events to Kafka
@@ -74,7 +74,7 @@ Example extraction:
 → { amount: 450, merchant: "Starbucks", currency: "INR" }
 ```
 
-#### 💰 Expense-Service
+#### Expense-Service
 
 - Subscribes to Kafka events
 - Persists expense data into MySQL
@@ -82,7 +82,7 @@ Example extraction:
 
 ---
 
-## 📱 Running the Mobile App
+## Running the Mobile App
 
 Navigate to the mobile application directory:
 
@@ -96,17 +96,17 @@ npx react-native run-ios       # For iOS
 
 ---
 
-## 📲 Mobile App Features
+## Mobile App Features
 
-- 🔑 Login
-- ➕ Add Expense
-- 📜 View Expense History
+- Login
+- Add Expense
+- View Expense History
 
 Designed with a **minimal UI** for fast and distraction-free expense tracking.
 
 ---
 
-## 🔄 Event-Driven Flow
+## Event-Driven Flow
 
 ```
 User Input (Mobile App)
@@ -126,7 +126,7 @@ Mobile App UI
 
 ---
 
-## 🚀 Key Highlights
+## Key Highlights
 
 - Microservices Architecture
 - Event-Driven Design (Kafka)
@@ -135,15 +135,7 @@ Mobile App UI
 - Mobile-first UX
 - Scalable & Decoupled Services
 
-Nice — you’re entering real backend engineer territory now 🙂
-
-Docker + API Gateway is exactly what turns a “good project” into a production-grade system that recruiters and senior engineers respect.
-
-Let me give you a clean Markdown section you can directly paste into your README.
-
----
-
-## 🐳 Containerization (In Progress)
+## Containerization (In Progress)
 
 The system is currently being **dockerized** to ensure:
 
@@ -173,7 +165,7 @@ docker-compose up --build
 
 ---
 
-## 🌐 API Gateway Integration (Next Step)
+## API Gateway Integration (Next Step)
 
 An **API Gateway** is being introduced to act as the single entry point for all client requests.
 
@@ -223,7 +215,7 @@ Mobile App → API Gateway → Microservices
 
 ---
 
-## 🚀 What This Enables
+## What This Enables
 
 After Docker + Gateway integration, the system becomes:
 
