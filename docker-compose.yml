@@ -1,0 +1,105 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_USER: root
+      MYSQL_ROOT_USER: root
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.4
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - zookeeper
+    ports:
+      - "9092:9092"
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+  authservice:
+    image: auth-service
+    container_name: auth-service
+    ports:
+      - "9898:9898"
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: authservice
+    depends_on:
+      - mysql
+      - kafka
+
+  userservice:
+    image: user-service
+    container_name: user-service
+    ports:
+      - "9820:9820"
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: userservice
+    depends_on:
+      - mysql
+      - kafka
+      - authservice
+
+  expenseservice:
+    image: expense-service
+    container_name: expense-service
+    ports: 
+      - '9821:9821'
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: expenseservice
+    depends_on:
+      - kafka
+      - mysql
+
+  dsservice:
+    image: ds-service
+    container_name: ds-service
+    ports:
+      - "8010:8010"
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      OPENAI_API_KEY: uhL33lPfvF1I32YAJk1bj3sjC29oNjDD
+    depends_on:
+      - kafka
+      - mysql
+      - expenseservice
+      - userservice
+
+volumes:
+  mysql_data:
+    driver: local
